@@ -1,22 +1,33 @@
-"use strict";
-const assert = require("assert");
-const readline = require("readline");
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
+// Get process.stdin as the standard input object.
+var standard_input = process.stdin;
+
+// Set input character encoding.
+standard_input.setEncoding('utf-8');
+
+// Prompt user to input data in console.
+console.log("Hello terd nugget! Welcome to Jons game!",
+    "Hmmm...terd nugget, I dont like that name.",
+    "What the hell should I call you?");
+
+// When user input data and click enter key.
+standard_input.on('data', function (data) {
+
+    // User input exit.
+    if (data === 'exit\n') {
+        // Program exit.
+        console.log("User input complete, program exit.");
+        process.exit();
+    } else {
+        // Print user input in console.
+        console.log('okay ' + data + ", That's a pretty stupid name but we'll go with it. " + data + ", You officially started the game. It's dark and cold out, you look over to your left and see a very large castle with no visible light showing do you wish to go inside the castele? y/n?");
+    }
+
 });
 
-function player1name(word) {
-    let newWord = word.trim().toLowerCase();
-    return "okay, player ones name is " + newWord;
-}
-function getPrompt() {
-    rl.question("word ", answer => {
-        console.log(player1name(answer));
-        getPrompt();
-    });
-}
 
-
-//player one then needs to explore a castle and create settings to where eventually
-//he finds a ghost. Batlle ghost...then continue to explore. here's a new attack..
+/* First step accomplished. Replace "data" with "player" to clarify whats going on.
+Clean up output of first input function. When data/"player" has value, end first
+function and figure out how to start next function. Next function should start out by
+saying data/"player" either entered castle and runs into a ghost, or doesn't enter
+castle and wanders down the trail.
+ */
